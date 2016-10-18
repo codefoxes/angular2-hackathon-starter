@@ -1,0 +1,12 @@
+{
+  "name": "Angular 2 Universal Hackathon Starter",
+  "description": "Angular 2 Universal Hackathon Starter kit by Codefoxes",
+  "repository": "https://github.com/codefoxes/angular2-hackathon-starter",
+  "logo": "https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png",
+  "env": {
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Install `webpack` and other development modules when deploying to allow full builds.",
+      "value": "false"
+    }
+  }
+}

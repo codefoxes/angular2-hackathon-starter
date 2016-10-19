@@ -16,7 +16,7 @@ export class PageComponent {
     pageService.getList()
       .subscribe(
         res => this.items = res,
-        err => console.log('Couldnt fetch url')
+        err => console.log(`Couldn't fetch url`)
       );
   }
 }

@@ -2,6 +2,8 @@
 
 A boilerplate for Server side rendered Angular 2 web applications using TypeScript 2
 
+**Note: This project is under active development. However can be used for reference.**
+
 ## Features
 
 * Server-Side Rendering for Angular 2

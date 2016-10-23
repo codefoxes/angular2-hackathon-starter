@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 import {APP_CONFIG, config} from './config';
 
 @Component({
@@ -6,7 +7,13 @@ import {APP_CONFIG, config} from './config';
   providers: [
     {provide: APP_CONFIG, useValue: config}
   ],
-  template: require('./app.component.html'),
-  styles: [require('./app.component.css')]
+  template: require(`./${config.view.path}/app.component.html`),
+  styles: [require(`./${config.view.path}/app.component.css`)]
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private router: Router) {}
+
+  isActive(url: string): boolean {
+    return this.router.isActive(url, true);
+  }
+}

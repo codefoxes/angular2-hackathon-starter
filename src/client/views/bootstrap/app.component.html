@@ -1,0 +1,25 @@
+<header class="navbar navbar-dark navbar-static-top bg-inverse">
+  <div class="container">
+    <h1 class="navbar-brand"><a routerLink="/">My Angular Universal App</a></h1>
+    <nav class="float-xs-right">
+      <div class="collapse navbar-toggleable-xs" id="bd-main-nav">
+        <ul class="nav navbar-nav">
+          <li class="nav-item" [class.active]="isActive('/')">
+            <a routerLink="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item" [class.active]="isActive('/page')">
+            <a routerLink="/page" class="nav-link">Page</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="content" class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="loader-overlay inverted">
+  <div class="text loader">Loading</div>
+</div>

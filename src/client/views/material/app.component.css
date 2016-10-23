@@ -1,0 +1,18 @@
+h1{
+	font-size: 1.2em;
+}
+
+nav{
+	padding: 0 16px;
+	background: #ddd;
+}
+
+a{
+	display: inline-block;
+	padding: 10px 16px;
+	text-decoration: none;
+}
+
+a.active, a:hover{
+	background: #ccc;
+}

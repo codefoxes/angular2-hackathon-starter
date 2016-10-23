@@ -1,0 +1,24 @@
+.navbar{
+	padding: 0 1rem;
+	border-radius: 0;
+	z-index: 1200;
+}
+
+.navbar-brand{
+	font-size: 1.2em;
+	padding: 8px 0;
+	margin: 0;
+}
+
+.navbar-brand a{
+	color: #fff;
+	text-decoration: none;
+}
+
+.navbar-nav .nav-link{
+	padding: 10px 16px;
+}
+
+#content{
+	padding-top: 40px;
+}

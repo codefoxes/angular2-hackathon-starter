@@ -1,0 +1,16 @@
+form{
+    max-width: 300px;
+    margin: auto;
+}
+
+form input{
+    margin-bottom: 10px;
+}
+
+button{
+    margin: 16px 0;
+}
+
+div{
+    text-align: center;
+}

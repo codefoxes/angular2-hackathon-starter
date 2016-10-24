@@ -10,6 +10,7 @@ import {NgbModule}       from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent}    from './client/app.component';
 import {HomeComponent}   from './client/home/home.component';
 import {PageComponent}   from './client/page/page.component';
+import {LoginComponent}  from './client/login/login.component';
 
 import {config} from './client/config';
 
@@ -26,7 +27,7 @@ if (config.view.name === 'material') {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageComponent],
+  declarations: [AppComponent, HomeComponent, PageComponent, LoginComponent],
   imports: importsArray,
   bootstrap: [AppComponent]
 })

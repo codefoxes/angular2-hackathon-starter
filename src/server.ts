@@ -65,6 +65,7 @@ function ngApp(req, res) {
 // ensure routes match client-side-app
 app.get('/', ngApp);
 app.get('/page', ngApp);
+app.get('/login', ngApp);
 
 app.use('/api/', apiRoutes);
 

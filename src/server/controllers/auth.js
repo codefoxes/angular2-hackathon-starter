@@ -1,8 +1,9 @@
 'use strict';
 
-const User  = require('../models/user');
-const jwt   = require('jsonwebtoken');
-const users = require('./users');
+const bcrypt = require('bcryptjs');
+const jwt    = require('jsonwebtoken');
+const User   = require('../models/user');
+const users  = require('./users');
 
 class AuthController{
 
@@ -18,28 +19,29 @@ class AuthController{
     } else if (user) {
 
       // check if password matches
-      if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-      } else {
+      bcrypt.compare(req.body.password, user.password, function(err, auth) {
+        if (auth) {
+          // if user is found and password is right create a token.
+          let token = jwt.sign({user: user.username}, req.app.get('superSecret'), {
+            // expires in 24 hours
+            expiresIn: 86400,
+          });
 
-        // if user is found and password is right create a token.
-        let token = jwt.sign({user: user.username}, req.app.get('superSecret'), {
-          // expires in 24 hours
-          expiresIn: 86400,
-        });
-
-        // Set response header.
-        res.setHeader('XSRF-TOKEN', token);
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-          message: 'Logged in!',
-          token: token,
-        });
-      }
+          // Set response header.
+          res.setHeader('XSRF-TOKEN', token);
+          // return the information including token as JSON
+          res.json({
+            success: true,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            message: 'Logged in!',
+            token: token,
+          });
+        } else {
+          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        }
+      });
     }
   }
 

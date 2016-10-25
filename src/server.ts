@@ -44,6 +44,12 @@ app.set('view engine', 'html');
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError) {
+        res.status(400).json({ status: 400, message: 'Invalid Request' });
+        res.end();
+    }
+});
 
 // Serve static files
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
@@ -80,11 +86,8 @@ app.get('/login', ngApp);
 
 app.use('/api/', apiRoutes);
 
-app.get('*', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  var pojo = { status: 404, message: 'No Content' };
-  var json = JSON.stringify(pojo, null, 2);
-  res.status(404).send(json);
+app.get('*', (req, res) => {
+  res.status(404).json({ status: 404, message: 'No Content' });
 });
 
 // Server

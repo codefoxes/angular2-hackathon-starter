@@ -1,5 +1,6 @@
 'use strict';
 
+const bcrypt   = require('bcryptjs');
 const User     = require('../models/user');
 const validate = require('./validations');
 
@@ -16,7 +17,7 @@ class UserController {
 
     User.find({}, '-password', (err, u) => {
       if (err) {
-        res.send({ message: err });
+        res.json({ message: err });
       }
 
       res.json({ users: u });
@@ -67,7 +68,7 @@ class UserController {
    */
   static createUser(data, res) {
     if (data.role === 'admin') {
-      return new Promise((reolve, reject) => {
+      return new Promise((resolve, reject) => {
         reject('Get out!');
       });
     }
@@ -78,14 +79,19 @@ class UserController {
         reject({ message: errors });
       });
     } else {
+      // Generate password hash.
+      let password = bcrypt.hashSync(data.password, 8);
+
       // Create and save user.
       let user = new User({
         name: data.name,
         username: data.username,
         email: data.email,
-        password: data.password,
+        phone: data.phone,
+        password: password,
         role: data.role,
         status: data.status,
+        created: Date.now(),
       });
 
       return user.save();
@@ -99,6 +105,7 @@ class UserController {
   static create(req, res) {
     let newUser = UserController.createUser(req.body, res);
     newUser.then((u) => {
+      delete u._doc.password;
       res.json({ user: u });
     }).catch((err) => {
       res.json({ success: false, message: 'Could not create user.' });

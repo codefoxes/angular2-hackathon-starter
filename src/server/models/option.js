@@ -1,6 +1,6 @@
 var mongoose		= require('mongoose');
 var optionSchema	= mongoose.Schema({
-	key: String,
+	key: { type: String, required: true },
 	value: String
 });
 

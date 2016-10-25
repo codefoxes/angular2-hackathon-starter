@@ -14,7 +14,7 @@ class UserController {
       return;
     }
 
-    User.find({}, '', (err, u) => {
+    User.find({}, '-password', (err, u) => {
       if (err) {
         res.send({ message: err });
       }

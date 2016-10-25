@@ -8,10 +8,11 @@ class AuthController{
 
   /**
    * Logs in a user
-   * @param {object} u - New User Object.
+   * @param {object} req - Request Handler.
    * @param {object} res - Response Handler.
+   * @param {object} user - New User Object.
    */
-  static loginUser(u, res) {
+  static loginUser(req, res, user) {
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
@@ -22,11 +23,13 @@ class AuthController{
       } else {
 
         // if user is found and password is right create a token.
-        let token = jwt.sign(user, req.app.get('superSecret'), {
+        let token = jwt.sign({user: user.username}, req.app.get('superSecret'), {
           // expires in 24 hours
           expiresIn: 86400,
         });
 
+        // Set response header.
+        res.setHeader('XSRF-TOKEN', token);
         // return the information including token as JSON
         res.json({
           success: true,
@@ -47,13 +50,13 @@ class AuthController{
 
     // find the user
     User.findOne({
-      username: req.body.name,
+      username: req.body.username,
     }, (err, user) => {
       if (err) {
         res.json({ success: false, message: 'Could not find user.' });
       }
 
-      AuthController.loginUser(user, res);
+      AuthController.loginUser(req, res, user);
     });
   };
 
@@ -63,7 +66,7 @@ class AuthController{
   static signup(req, res) {
     let newUser = users.createUser(req.body, res);
     newUser.then((user) => {
-      AuthController.loginUser(user, res);
+      AuthController.loginUser(req, res, user);
     }).catch((err) => {
       let message = (err.message) ? err.message : 'Please try again.';
       res.json({ success: false, message: message });
@@ -84,9 +87,15 @@ class AuthController{
           return res.json({ success: false, message: 'Failed to authenticate token.' });
         } else {
           // if everything is good, save to request for use in other routes
-          req.user = decoded._doc;
-          delete req.user.password;
-          next();
+          User.findOne({
+            username: decoded.user,
+          }, (err, user) => {
+            if (err) {
+              res.json({ success: false, message: 'Could not find user.' });
+            }
+            req.user = user;
+            next();
+          });
         }
       });
     } else {

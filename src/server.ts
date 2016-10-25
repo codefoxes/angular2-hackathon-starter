@@ -1,11 +1,13 @@
 // the polyfills must be the first thing imported in node.js
 import 'angular2-universal-polyfills';
-import 'rxjs/Rx';
 
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+const mongoose = require('mongoose');
+
+require('dotenv').config();
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
@@ -25,8 +27,18 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 const routeGroup = require('./server/routes/group');
 const apiRoutes  = require('./server/routes/api');
 
+app.set('superSecret', config.secret);
+
+// Connect to database.
+mongoose.Promise = global.Promise;
+mongoose.connect(config.db);
+mongoose.connection.on('connected', () => { console.log('MongoDB connected'); });
+
 // Express View
-app.engine('.html', createEngine({}));
+app.engine('.html', createEngine({
+    precompile: true,
+    ngModule: MainModule
+}));
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
@@ -50,7 +62,6 @@ function ngApp(req, res) {
         res.render('index', {
             req,
             res,
-            ngModule: MainModule,
             preboot: false,
             baseUrl: '/',
             requestUrl: req.originalUrl,

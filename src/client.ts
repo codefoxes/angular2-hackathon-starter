@@ -1,6 +1,5 @@
 // the polyfills must be the first thing imported
 import 'angular2-universal-polyfills';
-import 'rxjs/Rx';
 
 // Angular 2
 import { enableProdMode} from '@angular/core';

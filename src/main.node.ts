@@ -4,7 +4,8 @@ import {RouterModule}    from '@angular/router';
 import {UniversalModule} from 'angular2-universal';
 import {AppRoutes}       from './client/app.routes';
 
-import {MaterialModule}  from '@angular/material';
+// Import only required framework
+// import {MaterialModule}  from '@angular/material';
 import {NgbModule}       from '@ng-bootstrap/ng-bootstrap';
 
 import {AppComponent}    from './client/app.component';
@@ -21,7 +22,7 @@ let importsArray = [
 ];
 
 if (config.view.name === 'material') {
-    importsArray.push(MaterialModule.forRoot());
+    // importsArray.push(MaterialModule.forRoot());
 } else if (config.view.name === 'bootstrap') {
     importsArray.push(NgbModule.forRoot());
 }

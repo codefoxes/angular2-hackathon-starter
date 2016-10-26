@@ -52,7 +52,7 @@ class AuthController{
 
     // find the user
     User.findOne({
-      username: req.body.username,
+      $or: [{username: req.body.username}, {email: req.body.username}],
     }, (err, user) => {
       if (err) {
         res.json({ success: false, message: 'Could not find user.' });

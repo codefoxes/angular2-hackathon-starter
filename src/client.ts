@@ -15,6 +15,6 @@ const platformRef = platformUniversalDynamic();
 // on document ready bootstrap Angular 2
 document.addEventListener('DOMContentLoaded', () => {
 
-  platformRef.bootstrapModule(MainModule);
+    platformRef.bootstrapModule(MainModule);
 
 });

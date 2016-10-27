@@ -10,8 +10,11 @@
           <li class="nav-item" [class.active]="isActive('/page')">
             <a routerLink="/page" class="nav-link">Page</a>
           </li>
-          <li class="nav-item" [class.active]="isActive('/login')">
+          <li *ngIf="!isLoggedIn()" class="nav-item" [class.active]="isActive('/login')">
             <a routerLink="/login" class="nav-link">Login</a>
+          </li>
+          <li *ngIf="isLoggedIn()" class="nav-item" [class.active]="isActive('/profile')">
+            <a routerLink="/profile" class="nav-link">Profile</a>
           </li>
         </ul>
       </div>

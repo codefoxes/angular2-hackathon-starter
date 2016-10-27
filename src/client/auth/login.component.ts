@@ -5,7 +5,6 @@ import {config}      from '../config';
 
 @Component({
     selector: 'login',
-    providers: [AuthService],
     template: require(`../${config.view.path}/auth/login.component.html`),
     styles: [require(`../${config.view.path}/auth/login.component.css`)]
 })

@@ -24,6 +24,10 @@ class UserController {
     });
   };
 
+  static me(req, res) {
+    res.json({user: req.user});
+  }
+
   /**
    * Validate new user data.
    */

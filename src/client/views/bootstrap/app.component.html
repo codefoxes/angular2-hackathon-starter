@@ -13,8 +13,12 @@
           <li *ngIf="!isLoggedIn()" class="nav-item" [class.active]="isActive('/login')">
             <a routerLink="/login" class="nav-link">Login</a>
           </li>
-          <li *ngIf="isLoggedIn()" class="nav-item" [class.active]="isActive('/profile')">
-            <a routerLink="/profile" class="nav-link">Profile</a>
+          <li *ngIf="isLoggedIn()" class="nav-item" [class.active]="isActive('/profile')" ngbDropdown>
+            <a class="nav-link" ngbDropdownToggle>Profile</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <button routerLink="/profile" class="dropdown-item">My Profile</button>
+              <button (click)="logout()" class="dropdown-item">Logout</button>
+            </div>
           </li>
         </ul>
       </div>

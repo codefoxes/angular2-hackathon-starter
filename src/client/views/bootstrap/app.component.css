@@ -17,6 +17,7 @@
 
 .navbar-nav .nav-link{
 	padding: 10px 16px;
+	cursor: pointer;
 }
 
 #content{

@@ -24,6 +24,7 @@ router.group(router => {
 
   // Authenticated GET Requests.
   router.get('/users', users.get);
+  router.get('/users/me', users.me);
 
   // Authenticated POST requests.
   router.post('/users', users.create);

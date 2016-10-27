@@ -27,8 +27,8 @@ class AuthController{
             expiresIn: 86400,
           });
 
-          // Set response header.
-          res.setHeader('XSRF-TOKEN', token);
+          // Set response cookie.
+          res.cookie('XSRF-TOKEN', token);
           // return the information including token as JSON
           res.json({
             success: true,
@@ -91,7 +91,7 @@ class AuthController{
           // if everything is good, save to request for use in other routes
           User.findOne({
             username: decoded.user,
-          }, (err, user) => {
+          }, '-password', (err, user) => {
             if (err) {
               res.json({ success: false, message: 'Could not find user.' });
             }

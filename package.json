@@ -79,6 +79,7 @@
     "awesome-typescript-loader": "^2.2.4",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "github:webpack/extract-text-webpack-plugin",
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.6.5",
     "json-loader": "^0.5.4",

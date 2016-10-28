@@ -9,7 +9,7 @@ var commonConfig = {
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
+      { test: /\.ts$/, loaders: ['awesome-typescript-loader?tsconfig=config/tsconfig.json', 'angular2-template-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, exclude: [path.resolve(__dirname, "src/client/views/styles")], loader: 'raw-loader' },
       { test: /\.css$/, include: [path.resolve(__dirname, "src/client/views/styles")], loader: 'style-loader!css-loader' },

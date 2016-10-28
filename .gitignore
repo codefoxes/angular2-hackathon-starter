@@ -6,6 +6,9 @@
 npm-debug.log
 
 /dist/
+/www/
+/plugins/
+/hooks/
 
 .idea
 

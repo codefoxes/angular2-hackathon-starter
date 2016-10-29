@@ -15,6 +15,9 @@ A boilerplate for Server side rendered Angular 2 web applications using TypeScri
 
 ## Installation
 
+* `git clone --depth=1 git@github.com:codefoxes/angular2-hackathon-starter.git a2hs`
+* `cd a2hs`
+* `npm i -g cordova ionic`
 * `npm install`
 
 ## Serve
@@ -24,6 +27,9 @@ A boilerplate for Server side rendered Angular 2 web applications using TypeScri
 
 ## Development
 * run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
+* `ionic serve` to start ionic server
+* `ionic platform add android` to prepare android build
+* `ionic build android` to build android app
 
 ## Watch files
 * `npm run watch` to build your client app and start a web server

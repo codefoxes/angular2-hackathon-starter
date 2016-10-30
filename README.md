@@ -19,6 +19,7 @@ A boilerplate for Server side rendered Angular 2 web applications using TypeScri
 * `cd a2hs`
 * `npm i -g cordova ionic`
 * `npm install`
+* `npm i -g phonegap` (Optional - To use with [Phonegap developer app](http://phonegap.com/products/))
 
 ## Serve
 
@@ -30,6 +31,7 @@ A boilerplate for Server side rendered Angular 2 web applications using TypeScri
 * `ionic serve` to start ionic server
 * `ionic platform add android` to prepare android build
 * `ionic build android` to build android app
+* `phonegap serve` to serve to Phonegap Developer App
 
 ## Watch files
 * `npm run watch` to build your client app and start a web server
